@@ -54,13 +54,20 @@ npm run preview
 
 站点输出为纯静态文件，可部署到 Cloudflare Pages、Vercel、Netlify 或任意静态托管服务。
 
+当前 GitHub Pages 发布信息：
+
+- 在线地址：<https://phs-bitqun.github.io/>
+- 源码分支：`codex/site-v2`
+- Pages 发布分支：`gh-pages`（根目录）
+- 发布产物：`dist/`，包含 `.nojekyll` 以支持 Astro 的 `_astro/` 资源目录
+
 构建前可通过环境变量设置正式站点地址：
 
 ```bash
 SITE_URL=https://example.com npm run build
 ```
 
-该地址用于 canonical、Open Graph、站点地图与结构化数据。未设置时使用 `https://phs-bitqun.github.io` 作为占位地址；正式上线前应替换为实际域名。
+该地址用于 canonical、Open Graph、站点地图与结构化数据；未设置时使用正式 Pages 地址 `https://phs-bitqun.github.io`。
 
 ## 内容边界
 

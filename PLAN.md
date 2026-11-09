@@ -10,3 +10,7 @@
 - [x] 运行 Astro 检查、生产构建与 1440/1024/820/768/390/320 六视口布局复核
 - [x] 运行设计质量 gate 并记录开放规则与 5 条人工 waiver
 - [x] 在 4322 端口启动生产预览并打开页面
+- [x] 将 v2 源码同步到 GitHub `codex/site-v2`
+- [x] 使用正式域名构建生产产物并加入 `.nojekyll`
+- [x] 将 `dist/` 发布到 `gh-pages` 并启用 GitHub Pages
+- [x] 验证首页、许可页、CSS、sitemap、canonical 与 Pages 构建状态
