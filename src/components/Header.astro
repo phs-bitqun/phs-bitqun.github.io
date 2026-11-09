@@ -1,0 +1,70 @@
+---
+import { navItems, site } from '../data/site';
+---
+
+<header class="nav" data-header>
+  <div class="wrap nav__inner">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <a class="nav__logo brand" href="#top" aria-label={`${site.name} ${site.brand}首页`}>
+      <span class="brand__mark" aria-hidden="true">{site.brandMark}</span>
+      <span class="brand__copy">
+        <strong>{site.name}</strong>
+        <small>{site.brand}</small>
+      </span>
+    </a>
+
+    <nav class="nav__menu" id="site-nav" aria-label="主导航" data-nav>
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--primary nav__cta" href="#contact">发起项目咨询</a>
+      <button
+        class="nav__toggle"
+        type="button"
+        aria-label="打开导航"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+
+  const setMenu = (open: boolean) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+    nav?.classList.toggle('is-open', open);
+    header?.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+  };
+
+  toggle?.addEventListener('click', () => {
+    setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenu(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) setMenu(false);
+  });
+
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+</script>

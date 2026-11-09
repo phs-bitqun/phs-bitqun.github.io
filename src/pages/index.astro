@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Cases from '../components/Cases.astro';
+import Scenarios from '../components/Scenarios.astro';
+import Method from '../components/Method.astro';
+import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { faqs, site } from '../data/site';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Services />
+    <Cases />
+    <Scenarios />
+    <Method />
+    <About />
+    <Faq />
+    <Contact />
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  })} />
+  <noscript>
+    <style>{`[data-inquiry-form] { display: none; }`}</style>
+    <div class="noscript-note">
+      请直接发送邮件至 <a href={`mailto:${site.email}`}>{site.email}</a> 咨询项目。
+    </div>
+  </noscript>
+</BaseLayout>

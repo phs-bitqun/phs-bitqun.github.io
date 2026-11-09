@@ -1,0 +1,97 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="hero" id="top" data-enter style="--h: 1">
+  <div class="wrap hero__inner">
+    <div class="hero__copy hero-text">
+      <p class="hero__kicker">
+        <span class="status-dot" aria-hidden="true"></span>
+        {site.location} · {site.availability}
+      </p>
+
+      <h1>AI 软件开发、<br /><span>AI 视频与交付服务</span></h1>
+
+      <p class="hero__lead">把 AI 做成真正能用的业务能力。</p>
+
+      <p class="hero__support">
+        从需求、原型与开发，到视频、内容上线和团队交接。一个人负责整条交付链，
+        面向中小企业、本地商家与内容团队。
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#contact">发起项目咨询</a>
+        <a class="link" href="#services">查看五类服务 <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <p class="hero__fact"><strong>20+ 年</strong> IT 与互联网经历，技术、销售与运营都在一线。</p>
+    </div>
+
+    <div class="hero__stage" data-ui data-edge-free role="img" aria-label="一人交付工作台界面示意：需求、原型、开发、视频、发布与交接在同一条工作流中">
+      <div class="workbench" aria-hidden="true">
+        <div class="workbench__top">
+          <div>
+            <span class="window-dots"><i></i><i></i><i></i></span>
+            <strong>一人交付工作台</strong>
+          </div>
+          <span class="workbench__status">项目流程示意</span>
+        </div>
+
+        <div class="workbench__body">
+          <aside class="workbench__rail">
+            <span class="is-active">总览</span>
+            <span>软件</span>
+            <span>视频</span>
+            <span>内容</span>
+            <span>交接</span>
+          </aside>
+
+          <div class="workbench__main">
+            <div class="workbench__project">
+              <div>
+                <small>当前项目</small>
+                <strong>门店会员与预约工具</strong>
+              </div>
+              <span class="pill pill--soft">原型确认</span>
+            </div>
+
+            <div class="workbench__flow">
+              <div class="flow-node is-done"><span>01</span><strong>需求</strong><small>范围与用户</small></div>
+              <div class="flow-node is-done"><span>02</span><strong>原型</strong><small>关键流程</small></div>
+              <div class="flow-node is-active"><span>03</span><strong>开发</strong><small>可用版本</small></div>
+              <div class="flow-node"><span>04</span><strong>发布</strong><small>内容与上线</small></div>
+              <div class="flow-node"><span>05</span><strong>交接</strong><small>源码与文档</small></div>
+            </div>
+
+            <div class="workbench__panels">
+              <div class="mini-panel mini-panel--code">
+                <div class="mini-panel__head"><span>AI 软件</span><small>Web / 小程序</small></div>
+                <div class="code-lines"><i></i><i></i><i></i><i></i></div>
+                <div class="mini-panel__foot"><span>会员</span><span>预约</span><span>数据</span></div>
+              </div>
+              <div class="mini-panel mini-panel--video">
+                <div class="mini-panel__head"><span>AI 视频</span><small>脚本 → 成片</small></div>
+                <div class="video-frames"><i></i><i></i><i></i></div>
+                <div class="timeline-bar"><span></span><i></i><i></i><i></i></div>
+              </div>
+              <div class="mini-panel mini-panel--content">
+                <div class="mini-panel__head"><span>内容排期</span><small>本月</small></div>
+                <div class="calendar-grid">
+                  {Array.from({ length: 21 }).map((_, index) => (
+                    <i class:list={{ active: [2, 7, 10, 15, 18].includes(index) }}></i>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workbench__footer">
+          <span><i></i> 需求已收敛</span>
+          <span><i></i> 版本可检查</span>
+          <span><i></i> 文档可接手</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

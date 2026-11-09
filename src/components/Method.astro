@@ -1,0 +1,56 @@
+---
+import { processSteps } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="section method" id="method" style="--h: 1; --hm: 2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="eyebrow">交付方法</span>每个阶段都能运行、检查、接手</h2>
+      <p class="section-lede">
+        把项目拆成看得见的阶段。每个节点都有可以检查的结果，不等最后一天才知道哪里不对。
+      </p>
+    </div>
+
+    <div class="method-flow" data-ui role="img" aria-label="四阶段交付轨道：业务问题、范围与原型、分阶段交付、交接与陪跑">
+      <div class="method-flow__head">
+        <span>交付轨道</span>
+        <span>从问题到接手</span>
+      </div>
+      <div class="method-flow__track" aria-hidden="true">
+        {processSteps.map((step, index) => (
+          <div class="method-flow__step">
+            <span class="method-flow__dot">{step.number}</span>
+            <div class="method-flow__line"><i style={`--progress:${index < 3 ? 100 : 72}%`}></i></div>
+            <strong>{step.title}</strong>
+            <small>{index === 0 ? '目标、用户、流程' : index === 1 ? '范围、原型、报价' : index === 2 ? '可运行、可检查' : '源码、文档、方法'}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <ol class="method-steps">
+      {processSteps.map((step, index) => (
+        <li>
+          <span class="method-steps__number">{step.number}</span>
+          <span class="method-steps__visual" aria-hidden="true">
+            <Icon name={(['consult', 'code', 'check', 'delivery'] as const)[index]} size={22} />
+            <i></i><i></i><i></i>
+          </span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="method-note">
+      <div>
+        <strong>第一次沟通不收费</strong>
+        <p>先判断问题是否适合合作，再讨论范围、周期与报价。</p>
+      </div>
+      <a class="link" href="#contact">发起项目咨询 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,147 @@
+---
+import { services, site } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="section contact" id="contact" style="--h: 1; --hm: 2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="eyebrow">项目咨询</span>项目咨询与需求说明</h2>
+      <p class="section-lede">
+        不需要先写一份完美的需求文档。告诉我目标、现状和卡点，
+        我会判断是否适合合作，并给出下一步建议。
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <p class="contact-copy__lead">
+          先说你遇到的问题，再聊用什么 AI。能远程完成的部分不增加差旅；
+          需要现场参与时，会提前说明执行安排。
+        </p>
+
+        <div class="contact-direct">
+          <span>直接联系</span>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <button class="btn btn--secondary" type="button" data-copy-email={site.email}>
+            <Icon name="copy" size={17} />
+            <span>复制邮箱</span>
+          </button>
+        </div>
+
+        <dl class="contact-meta" data-edge-free>
+          <div><dt>回复时间</dt><dd>{site.responseTime}</dd></div>
+          <div><dt>协作方式</dt><dd>远程为主，浠水及周边可面谈</dd></div>
+          <div><dt>当前状态</dt><dd><i aria-hidden="true"></i>{site.availability}</dd></div>
+        </dl>
+
+        <div class="contact-flow" data-ui role="img" aria-label="咨询邮件从需求说明进入范围判断，再形成下一步建议的流程示意">
+          <span class="contact-flow__label">咨询会得到什么</span>
+          <div class="contact-flow__steps" aria-hidden="true">
+            <span>需求说明</span><i></i><span>范围判断</span><i></i><span>下一步建议</span>
+          </div>
+        </div>
+      </div>
+
+      <form
+        class="inquiry-form"
+        data-inquiry-form
+        data-mailto={site.email}
+        data-ui
+        action={`mailto:${site.email}`}
+        method="post"
+        enctype="text/plain"
+      >
+        <div class="form-head">
+          <div>
+            <span>项目简述</span>
+            <h3>用一分钟说清需求</h3>
+          </div>
+          <small>不上传、不保存</small>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>怎么称呼你</span>
+            <input name="name" type="text" autocomplete="name" placeholder="姓名或公司" required />
+          </label>
+          <label>
+            <span>联系方式</span>
+            <input name="contact" type="text" autocomplete="email" placeholder="邮箱或微信" required />
+          </label>
+          <label>
+            <span>需要什么</span>
+            <select name="service" required>
+              <option value="">请选择方向</option>
+              {services.map((service) => <option value={service.title}>{service.title}</option>)}
+              <option value="还不确定">还不确定，先聊问题</option>
+            </select>
+          </label>
+          <label>
+            <span>期望时间</span>
+            <select name="timeline">
+              <option value="未确定">未确定</option>
+              <option value="两周内">两周内</option>
+              <option value="一个月内">一个月内</option>
+              <option value="长期规划">长期规划</option>
+            </select>
+          </label>
+          <label class="form-full">
+            <span>现在遇到的问题</span>
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="例如：想做一个门店会员小程序，目前客户资料分散在 Excel 和微信里……"
+              required
+            ></textarea>
+          </label>
+        </div>
+
+        <button class="btn btn--primary form-submit" type="submit">发起项目咨询</button>
+        <p class="form-hint">提交后会在你的邮件客户端生成邮件，内容不会上传到本站。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+  copyButton?.addEventListener('click', async () => {
+    const email = copyButton.dataset.copyEmail;
+    if (!email) return;
+
+    const label = copyButton.querySelector('span');
+    const setLabel = (text: string) => {
+      if (label) label.textContent = text;
+    };
+
+    try {
+      await navigator.clipboard.writeText(email);
+      setLabel('已复制');
+      window.setTimeout(() => setLabel('复制邮箱'), 1800);
+    } catch {
+      window.location.href = `mailto:${email}`;
+    }
+  });
+
+  const form = document.querySelector<HTMLFormElement>('[data-inquiry-form]');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const value = (key: string) => String(data.get(key) ?? '').trim();
+    const email = form.dataset.mailto || '';
+    const subject = `[网站咨询] ${value('service')} · ${value('name')}`;
+    const body = [
+      `称呼：${value('name')}`,
+      `联系方式：${value('contact')}`,
+      `服务方向：${value('service')}`,
+      `期望时间：${value('timeline')}`,
+      '',
+      '需求说明：',
+      value('message'),
+      '',
+      '—— 来自张群 AI 交付工作室网站',
+    ].join('\n');
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

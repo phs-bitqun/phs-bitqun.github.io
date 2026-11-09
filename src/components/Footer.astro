@@ -1,0 +1,53 @@
+---
+import { navItems, services, site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="closing footer">
+  <div class="wrap">
+    <div class="closing__main">
+      <div class="closing__cta">
+        <span class="closing__label">开始项目</span>
+        <h2>把需求发过来，先把范围和交付说清楚。</h2>
+        <p>AI 软件、视频、内容、咨询与团队落地，都可以从一封邮件开始。</p>
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>发送项目邮件</a>
+      </div>
+
+      <div class="closing__capabilities" aria-label="可组合的五类服务">
+        <span class="closing__capabilities-label">可组合的交付范围</span>
+        {services.map((service) => (
+          <a href="#services">
+            <b>{service.number}</b>
+            <span>{service.title}</span>
+            <i aria-hidden="true">↗</i>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="closing__links">
+      <a class="closing__brand" href="#top" aria-label={`${site.name} ${site.brand}首页`}>
+        <span class="brand__mark" aria-hidden="true">{site.brandMark}</span>
+        <span>
+          <strong>{site.name} · {site.brand}</strong>
+          <small>把 AI 做成真正能用的业务能力</small>
+        </span>
+      </a>
+
+      <nav class="closing__nav" aria-label="页脚导航">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+
+      <div class="closing__contact">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <span>湖北 · 浠水 / 远程协作</span>
+      </div>
+
+      <div class="closing__legal">
+        <span>© {year} {site.name} · {site.brand}</span>
+        <a href="/credits/">图片许可与来源</a>
+        <a href="#top">回到顶部 ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>

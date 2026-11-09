@@ -1,0 +1,84 @@
+---
+import { cases } from '../data/site';
+---
+
+<section class="section cases" id="cases" style="--h: 2; --hm: 2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="eyebrow">真实案例</span>看做过什么，再决定是否合作</h2>
+      <p class="section-lede">
+        只展示可公开核实的项目经历，不用虚构客户与量化结果填充页面。
+        每条经历都对应具体的产品、活动、组织或文献工作。
+      </p>
+    </div>
+
+    <div class="case-grid">
+      {cases.map((item, index) => (
+        <article class:list={['case-card', { 'case-card--feature': index === 0 }]}>
+          <div class="case-card__visual" data-ui role="img" aria-label={`${item.title}项目结构示意`}>
+            <div class="case-card__meta">
+              <span>{item.type}</span>
+              <span>{item.year}</span>
+            </div>
+
+            {index === 0 && (
+              <svg viewBox="0 0 520 210" fill="none" aria-hidden="true">
+                <rect x="24" y="24" width="472" height="162" rx="8" stroke="currentColor" opacity=".2"/>
+                <circle cx="150" cy="104" r="34" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="260" cy="70" r="24" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="366" cy="122" r="30" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M181 90l55-13M281 80l62 28M178 118l159 1" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M95 155h330M95 48h330" stroke="currentColor" stroke-width="1" opacity=".35"/>
+                <rect x="42" y="145" width="54" height="27" rx="4" fill="currentColor" opacity=".08"/>
+                <rect x="420" y="48" width="58" height="28" rx="4" fill="currentColor" opacity=".08"/>
+              </svg>
+            )}
+            {index === 1 && (
+              <svg viewBox="0 0 520 210" fill="none" aria-hidden="true">
+                <path d="M30 163h460" stroke="currentColor" opacity=".25"/>
+                <path d="M70 132V70M91 145V54M112 126V80M133 151V48M154 118V88M175 139V62M196 111V99M217 145V56M238 126V84M259 151V48M280 119V89M301 142V65M322 128V80M343 149V54M364 118V92M385 137V69M406 151V48M427 122V83M448 142V62" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="260" cy="104" r="83" stroke="currentColor" stroke-width="1.5" opacity=".45"/>
+                <circle cx="260" cy="104" r="55" stroke="currentColor" stroke-width="1" opacity=".22"/>
+              </svg>
+            )}
+            {index === 2 && (
+              <svg viewBox="0 0 520 210" fill="none" aria-hidden="true">
+                <rect x="28" y="30" width="214" height="150" rx="7" stroke="currentColor" opacity=".24"/>
+                <rect x="270" y="30" width="222" height="70" rx="7" stroke="currentColor" opacity=".24"/>
+                <rect x="270" y="112" width="222" height="68" rx="7" stroke="currentColor" opacity=".24"/>
+                <path d="M52 70h120M52 94h162M52 118h92" stroke="currentColor" stroke-width="2"/>
+                <path d="M296 62h108M296 78h144M296 143h118M296 158h82" stroke="currentColor" stroke-width="2"/>
+                <circle cx="214" cy="104" r="14" stroke="currentColor" stroke-width="2"/>
+                <path d="M214 90v-18h56M214 118v-8h56" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            )}
+            {index === 3 && (
+              <svg viewBox="0 0 520 210" fill="none" aria-hidden="true">
+                <rect x="112" y="24" width="296" height="162" rx="6" stroke="currentColor" opacity=".24"/>
+                <rect x="135" y="45" width="100" height="120" rx="3" stroke="currentColor" opacity=".5"/>
+                <rect x="250" y="45" width="135" height="120" rx="3" stroke="currentColor" opacity=".5"/>
+                <path d="M158 67h546M158 84h64M158 101h50M158 118h72M158 135h58M273 67h89M273 84h65M273 101h83M273 118h57M273 135h74" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M236 104h14M88 104h24M408 104h38" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="260" cy="104" r="8" fill="currentColor" opacity=".14" stroke="currentColor"/>
+                <rect x="52" y="88" width="36" height="32" rx="4" fill="currentColor" opacity=".08"/>
+              </svg>
+            )}
+          </div>
+
+          <div class="case-card__copy" data-edge-free>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+
+          <div class="case-card__result" data-edge-free>
+            <strong>{item.metric}</strong>
+            <span>{item.metricLabel}</span>
+            <ul class="tag-list" aria-label="项目标签">
+              {item.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

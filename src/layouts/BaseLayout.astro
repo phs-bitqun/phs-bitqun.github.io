@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  image = '/images/og-cover.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${Astro.site}#person`,
+      name: site.name,
+      url: Astro.site?.toString(),
+      jobTitle: 'AI 交付顾问 / 独立开发者',
+      description:
+        '20+ 年 IT 与互联网经历，提供 AI 软件开发、AI 视频制作、新媒体代运营、IT 技术咨询与 AI 落地交付。',
+      email: `mailto:${site.email}`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: '浠水',
+        addressRegion: '湖北',
+        addressCountry: 'CN',
+      },
+      knowsAbout: [
+        'AI 应用开发',
+        'AI 视频制作',
+        '新媒体运营',
+        'IT 技术咨询',
+        'AI 工作流',
+      ],
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${Astro.site}#business`,
+      name: `${site.name} · ${site.brand}`,
+      url: Astro.site?.toString(),
+      description,
+      email: site.email,
+      areaServed: 'CN',
+      availableLanguage: ['zh-CN'],
+      founder: { '@id': `${Astro.site}#person` },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="zh-CN" data-type="service" data-radius="soft" data-buttons="solid" data-motion>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eeecea" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={site.keywords.join(',')} />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content="index, follow" />
+    <meta name="page-type" content="service" />
+    <meta name="site-kind" content="other" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/motion/motion.css" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline>
+      document.documentElement.classList.add('m-enter', 'mo-js');
+      setTimeout(() => document.documentElement.classList.add('m-enter-done'), 700);
+      setTimeout(() => document.documentElement.classList.add('mo-safe'), 2500);
+    </script>
+    <link rel="modulepreload" href="/moments/moments.js" />
+    <link rel="modulepreload" href="/moments/lib.js" />
+    <link rel="modulepreload" href="/moments/picture-develops/moment.js" />
+  </head>
+  <body>
+    <slot />
+    <script type="module" src="/motion/motion.js"></script>
+    <script type="module" src="/moments/moments.js"></script>
+  </body>
+</html>

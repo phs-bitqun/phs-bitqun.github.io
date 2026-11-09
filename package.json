@@ -1,0 +1,20 @@
+{
+  "name": "zhangqun-opc-site-v2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "张群 AI 交付工作室个人网站",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "author": "张群",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "astro": "^7.4.7",
+    "typescript": "^6.0.3"
+  }
+}

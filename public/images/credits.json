@@ -1,0 +1,20 @@
+{
+ "note": "Credits for the photographs in this folder: photos.mjs credits prints the footer block for the ones the pages use.",
+ "photos": [
+  {
+   "file": "photo-c877.webp",
+   "files": [
+    "photo-c877-500.webp",
+    "photo-c877-960.webp",
+    "photo-c877.webp"
+   ],
+   "id": "c877",
+   "alt": "Close-up of soft-focus stacked books showing page edges and covers with no readable spines",
+   "by": "Nenad Stojkovic",
+   "licence": "CC BY 2.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:Close-up_of_stacked_books._(51539890528).jpg",
+   "source": "Wikimedia Commons"
+  }
+ ]
+}

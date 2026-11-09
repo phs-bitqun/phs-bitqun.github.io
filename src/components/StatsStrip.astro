@@ -1,0 +1,16 @@
+---
+import { stats } from '../data/site';
+---
+
+<section class="stats-strip" aria-label="关键经历">
+  <div class="stats-grid shell">
+    {stats.map((stat, index) => (
+      <div class="stat-item">
+        <span class="stat-index">0{index + 1}</span>
+        <strong>{stat.value}</strong>
+        <span>{stat.label}</span>
+        <small>{stat.note}</small>
+      </div>
+    ))}
+  </div>
+</section>

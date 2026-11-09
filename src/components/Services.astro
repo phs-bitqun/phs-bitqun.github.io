@@ -1,0 +1,72 @@
+---
+import { services } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="section services" id="services" style="--h: 2; --hm: 2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="eyebrow">服务范围</span>五类服务，围绕一个交付结果</h2>
+      <p class="section-lede">
+        不是卖工具清单，而是把模糊问题收敛成可运行、可使用、可交接的结果。
+        从产品、内容到咨询与团队落地，按实际业务目标组合。
+      </p>
+    </div>
+
+    <div class="delivery-map" data-ui role="img" aria-label="五类服务共享一套从业务问题到上线交接的交付路径">
+      <div class="delivery-map__head">
+        <span>一条交付链</span>
+        <p>业务问题 → 范围与原型 → 开发制作 → 上线发布 → 团队接手</p>
+      </div>
+      <div class="delivery-map__track" aria-hidden="true">
+        <span class="track-step"><b>01</b>业务问题</span>
+        <span class="track-line"><i></i></span>
+        <span class="track-step"><b>02</b>范围与原型</span>
+        <span class="track-line"><i></i></span>
+        <span class="track-step"><b>03</b>开发制作</span>
+        <span class="track-line"><i></i></span>
+        <span class="track-step"><b>04</b>上线发布</span>
+        <span class="track-line"><i></i></span>
+        <span class="track-step"><b>05</b>团队接手</span>
+      </div>
+      <div class="delivery-map__services" aria-hidden="true">
+        <span>AI 软件</span><span>AI 视频</span><span>新媒体</span><span>IT 咨询</span><span>AI 落地</span>
+      </div>
+    </div>
+
+    <div class="service-grid">
+      {services.map((service, index) => (
+        <article class:list={['service-card', { 'service-card--wide': index === services.length - 1 }]}>
+          <div class="service-card__top">
+            <span class="service-card__number">{service.number}</span>
+            <span class="service-card__icon"><Icon name={service.icon} size={22} /></span>
+          </div>
+
+          <div class="service-mini" data-ui role="img" aria-label={`${service.title}交付界面示意`}>
+            <span class="service-mini__bar"><i></i><i></i><i></i></span>
+            <span class:list={['service-mini__canvas', `is-${service.icon}`]}>
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </span>
+          </div>
+
+          <h3>{service.title}</h3>
+          <p class="service-card__summary">{service.summary}</p>
+
+          <ul class="service-card__list" aria-label={`${service.title}交付内容`}>
+            {service.deliverables.slice(0, 3).map((item) => <li>{item}</li>)}
+          </ul>
+
+          <div class="service-card__bottom">
+            <p><strong>{service.startingPrice}</strong><span>{service.priceUnit}</span></p>
+            <a class="link" href="#contact" aria-label={`咨询${service.title}`}>咨询 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="pricing-note">
+      <strong>报价说明</strong>
+      以上为参考起价，不含第三方模型、素材、广告投放、服务器与差旅费用。确认范围后提供固定报价。
+    </p>
+  </div>
+</section>

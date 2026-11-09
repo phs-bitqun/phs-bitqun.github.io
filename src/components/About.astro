@@ -1,0 +1,100 @@
+---
+import { experience, site, stats } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="section about" id="about" style="--h: 2; --hm: 2">
+  <div class="wrap">
+    <div class="section-head">
+      <h2><span class="eyebrow">关于张群</span>经验不是装饰，是少走弯路的依据</h2>
+      <p class="section-lede">
+        我是张群，常驻湖北浠水。做过系统实施、企业客户服务、本地平台运营与企业新媒体，
+        现在以一人公司的方式，把 AI 接入真实的软件、内容与工作流程。
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo-column">
+        <figure
+          class="about-photo"
+          data-edge-free
+          data-moment="picture-develops"
+          data-moment-opts='{"look":"film"}'
+        >
+          <img
+            src="/images/photo-c877.webp"
+            srcset="/images/photo-c877-500.webp 500w, /images/photo-c877-960.webp 960w, /images/photo-c877.webp 1280w"
+            sizes="(max-width: 820px) 90vw, 42vw"
+            width="1280"
+            height="853"
+            alt="书页边缘与封面层叠在桌面上的近景，作为工作资料与桌面细节的意象"
+            loading="lazy"
+            decoding="async"
+            crossorigin="anonymous"
+            data-source="library-057"
+            data-subject="desk"
+          />
+        </figure>
+
+        <div class="about-fact">
+          <strong>{stats[0].value}</strong>
+          <span>{stats[0].label}</span>
+          <p>技术、销售、运营和内容都在同一张桌子上发生。</p>
+        </div>
+      </div>
+
+      <div class="about-copy" data-edge-free>
+        <p class="about-copy__lead">
+          优势不是同时会很多工具，而是能从业务问题出发，判断哪些该做、哪些先不做，
+          再把最终结果交到团队手里。{site.responseTime}回复邮件。
+        </p>
+
+        <dl class="about-stats">
+          <div><dt>5</dt><dd>条 AI 业务线</dd></div>
+          <div><dt>1</dt><dd>人负责整条交付链</dd></div>
+          <div><dt>24h</dt><dd>内回复项目邮件</dd></div>
+        </dl>
+
+        <div class="about-principles" aria-label="合作原则">
+          <article>
+            <span class="principle-visual" aria-hidden="true"><Icon name="consult" size={22} /><i></i><i></i><i></i></span>
+            <strong>懂技术，也懂客户</strong>
+            <p>做过系统实施、项目销售与客户服务，能把技术语言翻译成业务判断。</p>
+          </article>
+          <article>
+            <span class="principle-visual" aria-hidden="true"><Icon name="check" size={22} /><i></i><i></i><i></i></span>
+            <strong>先收敛，再投入</strong>
+            <p>先把范围、预算和验收说清楚，不用模糊承诺推动项目。</p>
+          </article>
+          <article>
+            <span class="principle-visual" aria-hidden="true"><Icon name="delivery" size={22} /><i></i><i></i><i></i></span>
+            <strong>交付方法，也交付能力</strong>
+            <p>源码、账号、文档和操作方式一并交接，团队后续能自己继续。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-experience">
+      <div class="about-experience__head" data-edge-free>
+        <span>工作经历 · 从 2001 到今天</span>
+        <p>从技术实施到本地平台，再到内容运营与 AI 一人公司，这条路径决定了今天的交付方式。</p>
+      </div>
+
+      <ol class="experience-list" aria-label="张群的工作经历">
+        {experience.map((item, index) => (
+          <li>
+            <span class="experience-icon" aria-hidden="true">
+              <Icon name={(['code', 'media', 'media', 'spark'] as const)[index]} size={18} />
+            </span>
+            <span class="experience-period">{item.period}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

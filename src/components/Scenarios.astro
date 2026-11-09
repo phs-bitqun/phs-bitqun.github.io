@@ -1,0 +1,70 @@
+---
+import { capabilityScenarios } from '../data/site';
+---
+
+<section class="section scenarios" id="scenarios" style="--h: 2; --hm: 2">
+  <div class="wrap">
+    <div class="section-head section-head--with-note">
+      <h2><span class="eyebrow">能力场景</span>没有同类公开案例，也能先看能做成什么</h2>
+      <p class="section-lede">
+        以下内容用于说明可执行的解决思路，不是客户案例，也不代表已经发生的合作结果。
+      </p>
+      <span class="scenario-note">能力场景，不是客户案例</span>
+    </div>
+
+    <div class="scenario-board">
+      {capabilityScenarios.map((scenario, index) => (
+        <article class="scenario-row">
+          <div class="scenario-row__copy">
+            <span class="scenario-row__label">{scenario.label}</span>
+            <h3>{scenario.title}</h3>
+            <p>{scenario.description}</p>
+            <ul class="tag-list" aria-label="能力标签">
+              {scenario.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+
+          <div class="scenario-row__visual" data-ui role="img" aria-label={`${scenario.title}结构与流程示意`}>
+            {index === 0 && (
+              <svg viewBox="0 0 520 300" fill="none" aria-hidden="true">
+                <rect x="32" y="32" width="456" height="236" rx="9" stroke="currentColor" opacity=".24"/>
+                <rect x="56" y="58" width="112" height="184" rx="6" stroke="currentColor" opacity=".5"/>
+                <rect x="188" y="58" width="276" height="52" rx="6" stroke="currentColor" opacity=".45"/>
+                <rect x="188" y="128" width="132" height="114" rx="6" stroke="currentColor" opacity=".45"/>
+                <rect x="332" y="128" width="132" height="114" rx="6" stroke="currentColor" opacity=".45"/>
+                <path d="M78 84h68M78 108h54M78 132h68M78 156h44M78 180h62M78 204h50" stroke="currentColor" stroke-width="2"/>
+                <path d="M212 84h158M212 154h58M212 176h74M356 154h50M356 176h62M356 198h40" stroke="currentColor" stroke-width="2"/>
+                <circle cx="456" cy="84" r="8" fill="currentColor" opacity=".14" stroke="currentColor"/>
+              </svg>
+            )}
+            {index === 1 && (
+              <svg viewBox="0 0 520 300" fill="none" aria-hidden="true">
+                <rect x="36" y="46" width="448" height="208" rx="9" stroke="currentColor" opacity=".22"/>
+                <path d="M60 84h400M60 216h400" stroke="currentColor" opacity=".35"/>
+                <rect x="61" y="99" width="118" height="102" rx="5" stroke="currentColor" opacity=".5"/>
+                <rect x="201" y="99" width="118" height="102" rx="5" stroke="currentColor" opacity=".5"/>
+                <rect x="341" y="99" width="118" height="102" rx="5" stroke="currentColor" opacity=".5"/>
+                <path d="M120 150l25-18 25 18v-30l-25 18-25-18v30ZM260 150l25-18 25 18v-30l-25 18-25-18v30ZM400 150l25-18 25 18v-30l-25 18-25-18v30Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M84 72h62M84 226h76M224 72h76M224 226h62M364 72h62M364 226h64" stroke="currentColor" stroke-width="2"/>
+                <circle cx="260" cy="44" r="5" fill="currentColor"/>
+                <circle cx="260" cy="256" r="5" fill="currentColor"/>
+              </svg>
+            )}
+            {index === 2 && (
+              <svg viewBox="0 0 520 300" fill="none" aria-hidden="true">
+                <circle cx="260" cy="150" r="46" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="260" cy="150" r="20" stroke="currentColor" stroke-width="1.4"/>
+                <rect x="42" y="55" width="122" height="62" rx="6" stroke="currentColor" opacity=".5"/>
+                <rect x="42" y="183" width="122" height="62" rx="6" stroke="currentColor" opacity=".5"/>
+                <rect x="356" y="55" width="122" height="62" rx="6" stroke="currentColor" opacity=".5"/>
+                <rect x="356" y="183" width="122" height="62" rx="6" stroke="currentColor" opacity=".5"/>
+                <path d="M164 86h38l38 48M164 214h38l38-48M356 86h-38l-38 48M356 214h-38l-38-48" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M62 78h66M62 98h50M376 78h66M376 98h54M62 206h50M62 226h66M376 206h54M376 226h64" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
