@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phs-bitqun.github.io/sitemap.xml
